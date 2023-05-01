@@ -548,13 +548,12 @@ def show_logout_page():
 def LoggedIn_Clicked(userName, password):
     conn = init_connection()
     cursor = conn.cursor()
-    sql = "Select password from admins Where name = '%s';" % (userName)
+    sql = "Select * from admins Where name = '%s';" % (userName)
     cursor.execute(sql)
     conn.commit()
     df2 = cursor.fetchone()
-    df = int(df2[0])
-    st.write(password)
-    #password = int(password)  #as password is a string and df2 is tuple
+    df = int(df2[2])
+    password = int(password)
     if df2 is not None and df == password:
         st.session_state['loggedIn'] = True
         if 'UserName' not in st.session_state:
