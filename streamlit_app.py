@@ -154,7 +154,7 @@ def show_All_page():
                 st.write(df2)
 
             with right_column:
-                for j in df2.id_name:
+                for j in df2.ID_NAME:
                     j = st.checkbox(j, value=True, key=j)
                     button_list.append(j)
             left_column1, right_column1 = st.columns([3, 1])
@@ -165,8 +165,8 @@ def show_All_page():
             if sub:
                 for t in range(0, len(button_list)):
                     if button_list[t]:
-                        email_list.append(df2.at[t, "email"])
-                        name_list.append(df2.at[t, "id_name"])
+                        email_list.append(df2.at[t, "EMAIL"])
+                        name_list.append(df2.at[t, "ID_NAME"])
                 st.write(email_list)
                 st.write(name_list)
                 st.success("You have successfully send email!")
@@ -278,7 +278,7 @@ def show_revision_page():
 
             with right_column:
 
-                for j in df2.id_name:
+                for j in df2.ID_NAME:
                     j = st.checkbox(j, key=j)
                     button_list.append(j)
             left_column1, right_column1 = st.columns([3, 1])
@@ -291,8 +291,8 @@ def show_revision_page():
             if submit_button:
                 for t in range(0, len(button_list)):
                     if button_list[t]:
-                        email_list.append(df2.at[t, "email"])
-                        name_list.append(df2.at[t, "id_name"])
+                        email_list.append(df2.at[t, "EMAIL"])
+                        name_list.append(df2.at[t, "ID_NAME"])
                 st.write(email_list)
                 st.write(name_list)
                 st.success("You have successfully send email!")
