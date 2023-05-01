@@ -270,7 +270,7 @@ def show_revision_page():
             df2 = query(cursor)
             st.write(df2)
             st.write(type(df2))
-            course_name = df2[["course_name"]]
+            course_name = df2[["COURSE_NAME"]]
             button_list = []
             email_list = []
             name_list = []
