@@ -268,8 +268,6 @@ def show_revision_page():
         with RevisionSection:
             select_all = st.button("All", on_click=all_click)
             df2 = query(cursor)
-            st.write(df2)
-            st.write(type(df2))
             course_name = df2[["COURSE_NAME"]]
             button_list = []
             email_list = []
