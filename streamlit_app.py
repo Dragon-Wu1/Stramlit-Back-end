@@ -554,8 +554,6 @@ def LoggedIn_Clicked(userName, password):
     df2 = cursor.fetchone()
     df = int(df2[0])
     st.write(password)
-    a=int(password)
-    st.write(a)
     #password = int(password)  #as password is a string and df2 is tuple
     if df2 is not None and df == password:
         st.session_state['loggedIn'] = True
