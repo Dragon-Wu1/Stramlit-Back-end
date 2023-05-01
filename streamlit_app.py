@@ -440,7 +440,7 @@ def show_view_page():
                                 elif depart == 7:
                                     df2 = department7_find_course(cursor, produect)
                                 st.write(df2)
-                                df2 = df2['id_name'].values.tolist()
+                                df2 = df2['ID_NAME'].values.tolist()
                                 selected_subject = st.selectbox("Select the course", df2)
                                 for item in df2:
                                     if item in selected_subject:
