@@ -1,5 +1,5 @@
 import streamlit as st
-import pymysql
+import snowflake.connector
 from PIL import Image
 import pandas as pd
 import email.message
