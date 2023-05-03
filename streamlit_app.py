@@ -552,9 +552,9 @@ def LoggedIn_Clicked(userName, password):
     cursor.execute(sql)
     conn.commit()
     df2 = cursor.fetchone()
-    df = int(df2[2])
+    df = df2[2]
     # mark down
-    password = int(password)
+    #password = int(password)
     if df2 is not None and df == password:
         st.session_state['loggedIn'] = True
         if 'UserName' not in st.session_state:
