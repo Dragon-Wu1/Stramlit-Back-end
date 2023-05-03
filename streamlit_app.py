@@ -5,6 +5,7 @@ import pandas as pd
 import email.message
 import smtplib
 import time
+
 st.set_page_config(
     page_title="Multipage App",
 )
@@ -48,6 +49,7 @@ def show_instructors(instructors):
     pd.set_option('display.width', None)
     pd.set_option('display.max_colwidth', None)
     st.dataframe(df)
+
 
 def add_instructor_form():
     st.write('## Add User Form')
@@ -105,6 +107,7 @@ if 'btn_clicked' not in st.session_state:
 def callback():
     st.session_state['btn_clicked'] = True
 
+
 @st.cache_resource
 def time_consuming_func():
     time.sleep(3)
@@ -121,9 +124,6 @@ UserSection = st.container()
 SelectSection = st.container()
 
 
-
-
-
 def send_email(email_list, name_list):
     for i, y in zip(email_list, name_list):
         msg = email.message.EmailMessage()
@@ -133,7 +133,7 @@ def send_email(email_list, name_list):
         msg["To"] = receiver_email
         msg["Subject"] = "Filled the Course information"
         msg.add_alternative(
-            "<h1>Dear Professor,</h1><br><p>Sorry to brother you,we are the member in the University of Macau,and we are writting this email for complete the course information,Moreover,This is the link for fill the information of course</p><br><h4>The link below</h4><br>https://dragon-wu1-streamlit-example-streamlit-app-w04axx.streamlit.app?cur_nam="+y,
+            "<h1>Dear Professor,</h1><br><p>Sorry to brother you,we are the member in the University of Macau,and we are writting this email for complete the course information,Moreover,This is the link for fill the information of course</p><br><h4>The link below</h4><br>https://dragon-wu1-streamlit-example-streamlit-app-w04axx.streamlit.app?cur_nam=" + y,
             subtype="html")
         server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
         server.login("dragonhunter9527@gmail.com", "xvkhdwolxkdsocif")
@@ -180,7 +180,6 @@ def show_All_page():
                 st.session_state['SELECT_ALL_FUNCTION'] = False
 
 
-
 def all_click():
     st.session_state['SELECT_ALL_FUNCTION'] = True
 
@@ -192,15 +191,19 @@ def query(cursor):
     df2 = pd.read_sql(sql, con=conn)
     return df2
 
+
 def department1_find_course(cursor, fac_name):
-    sql = "select id_name,course_name,status from course left join faculty on course.course_dept = faculty.department1 where faculty.faculty_name='%s';" % (fac_name)
+    sql = "select id_name,course_name,status from course left join faculty on course.course_dept = faculty.department1 where faculty.faculty_name='%s';" % (
+        fac_name)
     cursor.execute(sql)
     conn.commit()
     df2 = pd.read_sql(sql, con=conn)
     return df2
 
+
 def department2_find_course(cursor, fac_name):
-    sql = "select id_name,course_name,status from course left join faculty on course.course_dept = faculty.department2 where faculty.faculty_name='%s';" % (fac_name)
+    sql = "select id_name,course_name,status from course left join faculty on course.course_dept = faculty.department2 where faculty.faculty_name='%s';" % (
+        fac_name)
     cursor.execute(sql)
     conn.commit()
     df2 = pd.read_sql(sql, con=conn)
@@ -208,7 +211,8 @@ def department2_find_course(cursor, fac_name):
 
 
 def department3_find_course(cursor, fac_name):
-    sql = "select id_name,course_name,status from course left join faculty on course.course_dept = faculty.department3 where faculty.faculty_name='%s';" % (fac_name)
+    sql = "select id_name,course_name,status from course left join faculty on course.course_dept = faculty.department3 where faculty.faculty_name='%s';" % (
+        fac_name)
     cursor.execute(sql)
     conn.commit()
     df2 = pd.read_sql(sql, con=conn)
@@ -216,7 +220,8 @@ def department3_find_course(cursor, fac_name):
 
 
 def department4_find_course(cursor, fac_name):
-    sql = "select id_name,course_name,status from course left join faculty on course.course_dept = faculty.department4 where faculty.faculty_name='%s';" % (fac_name)
+    sql = "select id_name,course_name,status from course left join faculty on course.course_dept = faculty.department4 where faculty.faculty_name='%s';" % (
+        fac_name)
     cursor.execute(sql)
     conn.commit()
     df2 = pd.read_sql(sql, con=conn)
@@ -224,7 +229,8 @@ def department4_find_course(cursor, fac_name):
 
 
 def department5_find_course(cursor, fac_name):
-    sql = "select id_name,course_name,status from course left join faculty on course.course_dept = faculty.department5 where faculty.faculty_name='%s';" % (fac_name)
+    sql = "select id_name,course_name,status from course left join faculty on course.course_dept = faculty.department5 where faculty.faculty_name='%s';" % (
+        fac_name)
     cursor.execute(sql)
     conn.commit()
     df2 = pd.read_sql(sql, con=conn)
@@ -232,7 +238,8 @@ def department5_find_course(cursor, fac_name):
 
 
 def department6_find_course(cursor, fac_name):
-    sql = "select id_name,course_name,status from course left join faculty on course.course_dept = faculty.department6 where faculty.faculty_name='%s';" % (fac_name)
+    sql = "select id_name,course_name,status from course left join faculty on course.course_dept = faculty.department6 where faculty.faculty_name='%s';" % (
+        fac_name)
     cursor.execute(sql)
     conn.commit()
     df2 = pd.read_sql(sql, con=conn)
@@ -240,7 +247,8 @@ def department6_find_course(cursor, fac_name):
 
 
 def department7_find_course(cursor, fac_name):
-    sql = "select id_name,course_name,status from course left join faculty on course.course_dept = faculty.department7 where faculty.faculty_name='%s';" % (fac_name)
+    sql = "select id_name,course_name,status from course left join faculty on course.course_dept = faculty.department7 where faculty.faculty_name='%s';" % (
+        fac_name)
     cursor.execute(sql)
     conn.commit()
     df2 = pd.read_sql(sql, con=conn)
@@ -248,7 +256,8 @@ def department7_find_course(cursor, fac_name):
 
 
 def departmentall_find_course(cursor, fac_name):
-    sql = "select id_name,course_name,status from course left join faculty on course.course_dept = faculty.department1 or course.course_dept = faculty.department2 or course.course_dept = faculty.department3 or course.course_dept = faculty.department4 or course.course_dept = faculty.department5 or course.course_dept = faculty.department6 or course.course_dept = faculty.department7 where faculty.faculty_name='%s';" % (fac_name)
+    sql = "select id_name,course_name,status from course left join faculty on course.course_dept = faculty.department1 or course.course_dept = faculty.department2 or course.course_dept = faculty.department3 or course.course_dept = faculty.department4 or course.course_dept = faculty.department5 or course.course_dept = faculty.department6 or course.course_dept = faculty.department7 where faculty.faculty_name='%s';" % (
+        fac_name)
     cursor.execute(sql)
     conn.commit()
     df2 = pd.read_sql(sql, con=conn)
@@ -256,7 +265,7 @@ def departmentall_find_course(cursor, fac_name):
 
 
 def find_class(cursor, id_na):
-    sql ="select * from course where id_name = '%s';" % (id_na)
+    sql = "select * from course where id_name = '%s';" % (id_na)
     cursor.execute(sql)
     conn.commit()
     df2 = pd.read_sql(sql, con=conn)
@@ -287,7 +296,6 @@ def show_revision_page():
             with right_column1:
                 submit_button = st.button(label='Send')
 
-
             if submit_button:
                 for t in range(0, len(button_list)):
                     if button_list[t]:
@@ -304,7 +312,6 @@ def show_revision_page():
                 st.session_state['Revision'] = False
 
 
-
 def show_view_page():
     if st.session_state['View']:
         with ViewSection:
@@ -312,34 +319,37 @@ def show_view_page():
             if 'Search' not in st.session_state:
                 st.session_state['Search'] = False
             faculty_list = ['FAH - FACULTY OF ARTS AND HUMANITIES',
-                                                           'FBA - FACULTY OF BUSINESS ADMINISTRATION',
-                                                           'FED - FACULTY OF EDUCATION',
-                                                           'FHS - FACULTY OF HEALTH SCIENCES', 'FLL - FACULTY OF LAW',
-                                                           'FSS - FACULTY OF SOCIAL SCIENCES',
-                                                           'FST - FACULTY OF SCIENCE AND TECHNOLOGY',
-                                                           'HC - HONOURS COLLEGE',
-                                                           'IAPME - INSTITUTE OF APPLIED PHYSICS AND MATERIALS ENGINEERING',
-                                                           'ICI - INSTITUTE OF COLLABORATIVE INNOVATION',
-                                                           'ICMS - INSTITUTE OF CHINESE MEDICAL SCIENCES',
-                                                           'IME - INSTITUTE OF MICROELECTRONICS',
-                                                           'RC - RESIDENTIAL COLLEGES']
+                            'FBA - FACULTY OF BUSINESS ADMINISTRATION',
+                            'FED - FACULTY OF EDUCATION',
+                            'FHS - FACULTY OF HEALTH SCIENCES', 'FLL - FACULTY OF LAW',
+                            'FSS - FACULTY OF SOCIAL SCIENCES',
+                            'FST - FACULTY OF SCIENCE AND TECHNOLOGY',
+                            'HC - HONOURS COLLEGE',
+                            'IAPME - INSTITUTE OF APPLIED PHYSICS AND MATERIALS ENGINEERING',
+                            'ICI - INSTITUTE OF COLLABORATIVE INNOVATION',
+                            'ICMS - INSTITUTE OF CHINESE MEDICAL SCIENCES',
+                            'IME - INSTITUTE OF MICROELECTRONICS',
+                            'RC - RESIDENTIAL COLLEGES']
             Offering_Unit = st.selectbox("Offering Unit", faculty_list, index=1)
             st.write('You selected {}.'.format(Offering_Unit))
 
             if 'FAH - FACULTY OF ARTS AND HUMANITIES' in Offering_Unit:
                 Department = ['--- All ---', 'CJS - CENTRE FOR JAPANESE STUDIES',
-                                                    'DCH - DEPARTMENT OF CHINESE LANGUAGE AND LITERATURE',
-                                                    'DENG - DEPARTMENT OF ENGLISH', 'DHIST - DEPARTMENT OF HISTORY',
-                                                    'DPHIL - DEPARTMENT OF PHILOSOPHY AND RELIGIOUS STUDIES',
-                                                    'DPT - DEPARTMENT OF PORTUGUESE', 'ELC - ENGLISH LANGUAGE CENTRE']
-                Offering_Department = st.selectbox("Offering Department",Department
+                              'DCH - DEPARTMENT OF CHINESE LANGUAGE AND LITERATURE',
+                              'DENG - DEPARTMENT OF ENGLISH', 'DHIST - DEPARTMENT OF HISTORY',
+                              'DPHIL - DEPARTMENT OF PHILOSOPHY AND RELIGIOUS STUDIES',
+                              'DPT - DEPARTMENT OF PORTUGUESE', 'ELC - ENGLISH LANGUAGE CENTRE']
+                Offering_Department = st.selectbox("Offering Department", Department
                                                    ,
                                                    index=1)
                 st.write('You selected {}.'.format(Offering_Department))
 
             elif 'FBA - FACULTY OF BUSINESS ADMINISTRATION' in Offering_Unit:
-                Department = ['--- All ---', 'AIM - DEPARTMENT OF ACCOUNTING AND INFORMATION MANAGEMENT','DRTM - DEPARTMENT OF INTEGRATED RESORT AND TOURISM MANAGEMENT','FBE - DEPARTMENT OF FINANCE AND BUSINESS ECONOMICS','IIRM - INTERNATIONAL INTEGRATED RESORT MANAGEMENT',
-                                                                           'MMI - DEPARTMENT OF MANAGEMENT AND MARKETING']
+                Department = ['--- All ---', 'AIM - DEPARTMENT OF ACCOUNTING AND INFORMATION MANAGEMENT',
+                              'DRTM - DEPARTMENT OF INTEGRATED RESORT AND TOURISM MANAGEMENT',
+                              'FBE - DEPARTMENT OF FINANCE AND BUSINESS ECONOMICS',
+                              'IIRM - INTERNATIONAL INTEGRATED RESORT MANAGEMENT',
+                              'MMI - DEPARTMENT OF MANAGEMENT AND MARKETING']
                 Offering_Department = st.selectbox("Offering Department", Department,
                                                    index=1)
                 st.write('You selected {}.'.format(Offering_Department))
@@ -351,38 +361,38 @@ def show_view_page():
 
             elif 'FHS - FACULTY OF HEALTH SCIENCES' in Offering_Unit:
                 Department = ['--- All ---', 'DBS - DEPARTMENT OF BIOMEDICAL SCIENCES',
-                                                    'DPM - DEPARTMENT OF PUBLIC HEALTH AND MEDICINAL ADMINISTRATION',
-                                                    'DPS - DEPARTMENT OF PHARMACEUTICAL SCIENCES']
+                              'DPM - DEPARTMENT OF PUBLIC HEALTH AND MEDICINAL ADMINISTRATION',
+                              'DPS - DEPARTMENT OF PHARMACEUTICAL SCIENCES']
                 Offering_Department = st.selectbox("Offering Department", Department
                                                    )
                 st.write('You selected {}.'.format(Offering_Department))
 
             elif 'FLL - FACULTY OF LAW' in Offering_Unit:
                 Department = ['--- All ---', 'GLS - DEPARTMENT OF GLOBAL LEGAL STUDIES',
-                                                    'MLS - DEPARTMENT OF MACAO LEGAL STUDIES']
+                              'MLS - DEPARTMENT OF MACAO LEGAL STUDIES']
                 Offering_Department = st.selectbox("Offering Department", Department
                                                    )
                 st.write('You selected {}.'.format(Offering_Department))
 
             elif 'FSS - FACULTY OF SOCIAL SCIENCES' in Offering_Unit:
                 Department = ['--- All ---', 'DCOM - DEPARTMENT OF COMMUNICATION',
-                                                    'DECO - DEPARTMENT OF ECONOMICS',
-                                                    'DGPA - DEPARTMENT OF GOVERNMENT AND PUBLIC ADMINISTRATION',
-                                                    'DPSY - DEPARTMENT OF PSYCHOLOGY',
-                                                    'DSOC - DEPARTMENT OF SOCIOLOGY']
-                Offering_Department = st.selectbox("Offering Department",Department
+                              'DECO - DEPARTMENT OF ECONOMICS',
+                              'DGPA - DEPARTMENT OF GOVERNMENT AND PUBLIC ADMINISTRATION',
+                              'DPSY - DEPARTMENT OF PSYCHOLOGY',
+                              'DSOC - DEPARTMENT OF SOCIOLOGY']
+                Offering_Department = st.selectbox("Offering Department", Department
                                                    )
                 st.write('You selected {}.'.format(Offering_Department))
 
             elif 'FST - FACULTY OF SCIENCE AND TECHNOLOGY' in Offering_Unit:
                 Department = ['--- All ---',
-                                                                           'CEE - DEPARTMENT OF CIVIL AND ENVIRONMENTAL ENGINEERING',
-                                                                           'CIS - DEPARTMENT OF COMPUTER AND INFORMATION SCIENCE',
-                                                                           'CSG - CHEMISTRY SUPPORTING GROUP',
-                                                                           'DPC - DEPARTMENT OF PHYSICS AND CHEMISTRY',
-                                                                           'ECE - DEPARTMENT OF ELECTRICAL AND COMPUTER ENGINEERING',
-                                                                           'EME - DEPARTMENT OF ELECTROMECHANICAL ENGINEERING',
-                                                                           'MAT - DEPARTMENT OF MATHEMATICS']
+                              'CEE - DEPARTMENT OF CIVIL AND ENVIRONMENTAL ENGINEERING',
+                              'CIS - DEPARTMENT OF COMPUTER AND INFORMATION SCIENCE',
+                              'CSG - CHEMISTRY SUPPORTING GROUP',
+                              'DPC - DEPARTMENT OF PHYSICS AND CHEMISTRY',
+                              'ECE - DEPARTMENT OF ELECTRICAL AND COMPUTER ENGINEERING',
+                              'EME - DEPARTMENT OF ELECTROMECHANICAL ENGINEERING',
+                              'MAT - DEPARTMENT OF MATHEMATICS']
                 Offering_Department = st.selectbox("Offering Department", Department)
                 st.write('You selected {}.'.format(Offering_Department))
 
@@ -393,7 +403,7 @@ def show_view_page():
 
             elif 'IAPME - INSTITUTE OF APPLIED PHYSICS AND MATERIALS ENGINEERING' in Offering_Unit:
                 Department = ['--- All ---']
-                Offering_Department = st.selectbox("Offering Department",  Department)
+                Offering_Department = st.selectbox("Offering Department", Department)
                 st.write('You selected {}.'.format(Offering_Department))
 
             elif 'ICI - INSTITUTE OF COLLABORATIVE INNOVATION' in Offering_Unit:
@@ -420,11 +430,12 @@ def show_view_page():
             if st.button("Search", on_click=callback) or st.session_state['btn_clicked']:
                 for produect in faculty_list:
                     if produect in Offering_Unit:
-                        for depart in range(0, len(Department)):        #the length of the department list
+                        for depart in range(0, len(Department)):  # the length of the department list
                             if Department[depart] in Offering_Department:
                                 time_consuming_func()
                                 if depart == 0:
-                                    df2 = departmentall_find_course(cursor, produect)     #dataframe df2 = df2[' '].values.tolist(),change to list
+                                    df2 = departmentall_find_course(cursor,
+                                                                    produect)  # dataframe df2 = df2[' '].values.tolist(),change to list
                                 elif depart == 1:
                                     df2 = department1_find_course(cursor, produect)
                                 elif depart == 2:
@@ -447,8 +458,6 @@ def show_view_page():
                                         dc2 = find_class(cursor, item)
                                         if st.button("View"):
                                             st.write(dc2)
-
-
 
 
 def show_user_page():
@@ -534,7 +543,6 @@ def show_main_page():
             st.subheader("Student : CHAN CHON IP")
 
 
-
 def LoggedOut_Clicked():
     st.session_state['loggedIn'] = False
 
@@ -553,7 +561,7 @@ def LoggedIn_Clicked(userName, password):
     conn.commit()
     df2 = cursor.fetchone()
     # st.write(type(df2[2])) int
-    #st.write(type(password)) string
+    # st.write(type(password)) string
     df = str(df2[2])
     # mark down
     st.write(type(passwor))
@@ -571,10 +579,9 @@ def show_login_page():
         st.title("Admin")
         if st.session_state['loggedIn'] == False:
             userName = st.text_input(label="", value="", placeholder="Enter your user name")
-            password = st.text_input(label="", value="", placeholder="Enter password", type="password")            
+            password = st.text_input(label="", value="", placeholder="Enter password", type="password")
             st.button("Login", on_click=LoggedIn_Clicked, args=(userName, password)
 
-                      
 with headerSection:
     conn = init_connection()
     cursor = conn.cursor()
@@ -583,38 +590,38 @@ with headerSection:
         show_login_page()
     else:
         if st.session_state['loggedIn']:
-            if 'main' not in st.session_state:
-                st.session_state['main'] = True
-                #st.write(1)
+        if 'main' not in st.session_state:
+            st.session_state['main'] = True
+            # st.write(1)
+            show_main_page()
+            show_logout_page()
+            # st.write(2)
+            show_select_page()
+            # st.write(3)
+        else:
+            if st.session_state['main'] == True:
+            # st.write(4)
                 show_main_page()
                 show_logout_page()
-                #st.write(2)
-                show_select_page()
-                #st.write(3)
             else:
-                if st.session_state['main'] == True:
-                    #st.write(4)
-                    show_main_page()
-                    show_logout_page()
-                else:
-                    show_select_page()
-                    # st.session_state['main'] is exit and == False
-                    if 'SELECT_ALL_FUNCTION' not in st.session_state:
-                        st.session_state['SELECT_ALL_FUNCTION'] = False
-                    if st.session_state['Revision'] and st.session_state['SELECT_ALL_FUNCTION'] == False:
-                        #st.write(5)
-                        show_revision_page()
+                show_select_page()
+                # st.session_state['main'] is exit and == False
+                if 'SELECT_ALL_FUNCTION' not in st.session_state:
+                    st.session_state['SELECT_ALL_FUNCTION'] = False
+                if st.session_state['Revision'] and st.session_state['SELECT_ALL_FUNCTION'] == False:
+                    # st.write(5)
+                    show_revision_page()
 
-                    if st.session_state['SELECT_ALL_FUNCTION']:
-                        #st.write(6)
-                        show_All_page()
+                if st.session_state['SELECT_ALL_FUNCTION']:
+                    # st.write(6)
+                    show_All_page()
 
-                    if st.session_state['View']:
-                        #st.write(7)
-                        show_view_page()
+                if st.session_state['View']:
+                    # st.write(7)
+                    show_view_page()
 
-                    if st.session_state['User']:
-                        #st.write(8)
-                        show_user_page()
+                if st.session_state['User']:
+                    # st.write(8)
+                    show_user_page()
         else:
             show_login_page()
