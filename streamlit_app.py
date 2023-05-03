@@ -554,7 +554,7 @@ def LoggedIn_Clicked(userName, password):
     df2 = cursor.fetchone()
     # st.write(type(df2[2])) int
     #st.write(type(password)) string
-    df = int(df2[2])
+    df = str(df2[2])
     # mark down
     st.write(type(passwor))
     if df2 is not None and df == password:
@@ -573,7 +573,7 @@ def show_login_page():
             userName = st.text_input(label="", value="", placeholder="Enter your user name")
             password = st.text_input(label="", value="", placeholder="Enter password", type="password")
             
-            st.button("Login", on_click=LoggedIn_Clicked, args=(userName, int(password)))
+            st.button("Login", on_click=LoggedIn_Clicked, args=(userName, password)
 
 
 with headerSection:
