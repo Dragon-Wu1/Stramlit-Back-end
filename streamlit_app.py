@@ -552,15 +552,10 @@ def LoggedIn_Clicked(userName, password):
     cursor.execute(sql)
     conn.commit()
     df2 = cursor.fetchone()
-    st.write(df2[2])
-    st.write(type(df2[2]))
-    st.write(type(password))
-    st.write(1)
+    # st.write(type(df2[2])) int
+    #st.write(type(password)) string
     df = int(df2[2])
-    st.write(df)
-    st.write(type(df))
     # mark down
-    password = int(password)
     st.write(type(passwor))
     if df2 is not None and df == password:
         st.session_state['loggedIn'] = True
@@ -577,7 +572,8 @@ def show_login_page():
         if st.session_state['loggedIn'] == False:
             userName = st.text_input(label="", value="", placeholder="Enter your user name")
             password = st.text_input(label="", value="", placeholder="Enter password", type="password")
-            st.button("Login", on_click=LoggedIn_Clicked, args=(userName, password))
+            
+            st.button("Login", on_click=LoggedIn_Clicked, args=(userName, int(password)))
 
 
 with headerSection:
