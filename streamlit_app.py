@@ -562,7 +562,7 @@ def LoggedIn_Clicked(userName, password):
     df2 = cursor.fetchone()
     # st.write(type(df2[2])) int
     # st.write(type(password)) string
-    df = str(df2[2])
+    df = df2[2]
     # mark down
     st.write(type(passwor))
     if df2 is not None and df == password:
