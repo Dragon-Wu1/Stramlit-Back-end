@@ -35,7 +35,7 @@ def show_revision_form():
         st.table(df2)
     with right_column:
         st.write("<Select Box!>")
-        for j in df2.CORUSE_CODE:
+        for j in df2.COURSE_CODE:
             j = st.checkbox(j, key=j, value=isall)
             button_list.append(j)
     left_column1, right_column1 = st.columns([5, 1])
@@ -48,7 +48,7 @@ def show_revision_form():
         for t in range(0, len(button_list)):
             if button_list[t]:
                 email_list.append(df2.at[t, "EMAIL"])
-                name_list.append(df2.at[t, "COURSE_cODE"])
+                name_list.append(df2.at[t, "COURSE_CODE"])
         # st.write(email_list)
         # st.write(name_list)
         st.success("You have successfully send email!")
