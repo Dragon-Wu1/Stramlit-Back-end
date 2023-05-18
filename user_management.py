@@ -3,13 +3,15 @@ import snowflake.connector
 import pandas as pd
 from revision import show_revision_form
 
-def connect():
-        conn = init_connection()
-    return conn
+def init_connection():
+    return snowflake.connector.connect(
+        **st.secrets["snowflake"], client_session_keep_alive=True
+    )
+
 
 
 def get_instructors():
-    conn = connect()
+    conn = init_connection()
     cur = conn.cursor()
     cur.execute('SELECT * FROM instructors')
     instructors = cur.fetchall()
@@ -18,7 +20,7 @@ def get_instructors():
 
 
 def add_instructor(instructor_id, name, course, password, email):
-    conn = connect()
+    conn = init_connection()
     cur = conn.cursor()
     cur.execute(
         f"INSERT INTO instructors (instructor_id, name, course, password, email) VALUES ('{instructor_id}','{name}', '{course}', '{password}', '{email}')")
@@ -26,14 +28,14 @@ def add_instructor(instructor_id, name, course, password, email):
 
 
 def delete_instructor(instructor_id):
-    conn = connect()
+    conn = init_connection()
     cur = conn.cursor()
     cur.execute(f"DELETE FROM instructors WHERE instructor_id = '{instructor_id}'")
     conn.commit()
 
 
 def edit_instructor(instructor_id, name, course, password, email):
-    conn = connect()
+    conn = init_connection()
     cur = conn.cursor()
     cur.execute(
         f"UPDATE instructors SET name = '{name}', course = '{course}', password = '{password}', email = '{email}' WHERE instructor_id = '{instructor_id}'")
