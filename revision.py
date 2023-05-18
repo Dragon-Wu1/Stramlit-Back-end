@@ -5,7 +5,6 @@ import pandas as pd
 import time
 import smtplib
 import email.message
-import pymysql
 
 
 def init_connection():
