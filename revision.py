@@ -38,7 +38,7 @@ def show_revision_form():
         i = 0
         for j in df2.COURSE_CODE:
             j = st.checkbox(j, key=i, value=isall)
-            i++
+            i = i + 1
             button_list.append(j)
     left_column1, right_column1 = st.columns([5, 1])
     with left_column1:
