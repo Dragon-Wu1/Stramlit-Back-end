@@ -1,5 +1,5 @@
 import streamlit as st
-import pymysql
+import snowflake.connector
 from PIL import Image
 import pandas as pd
 import email.message
@@ -10,6 +10,10 @@ from view_course import view_course_information
 from user_management import management
 from add_new_course import add_course_form,add_new_course_save
 
+def init_connection():
+    return snowflake.connector.connect(
+        **st.secrets["snowflake"], client_session_keep_alive=True
+    )
 
 st.markdown(""" <style> .css-ejeybu {
 gap:2rem;
@@ -124,11 +128,11 @@ def show_logout_page():
 
 
 def LoggedIn_Clicked(userName, password):
-    db = pymysql.connect(host='127.0.0.1', user='root', passwd='a098765', port=3306, db='course_management')
-    cursor = db.cursor()
+    conn = init_connection()
+    cursor = conn.cursor()
     sql = "Select password from admins Where name = '%s';" % (userName)
     cursor.execute(sql)
-    db.commit()
+    conn.commit()
     df2 = cursor.fetchone()
     df = int(df2[0])
     password = int(password)  # as password is a string and df2 is tuple
@@ -150,8 +154,8 @@ def show_login_page():
 
 
 with headerSection:
-    db = pymysql.connect(host='127.0.0.1', user='root', passwd='a098765', port=3306, db='course_management')
-    cursor = db.cursor()
+    conn = init_connection()
+    cursor = conn.cursor()
     if 'loggedIn' not in st.session_state:
         st.session_state['loggedIn'] = False
         show_login_page()
