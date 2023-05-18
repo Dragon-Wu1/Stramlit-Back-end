@@ -1,7 +1,12 @@
 import streamlit as st
-import pymysql
+import snowflake.connector
 import pandas as pd
 import time
+
+def init_connection():
+    return snowflake.connector.connect(
+        **st.secrets["snowflake"], client_session_keep_alive=True
+    )
 
 if 'btn_clicked' not in st.session_state:
     st.session_state['btn_clicked'] = False
@@ -34,7 +39,7 @@ def time_consuming_func():
     return
 
 
-conn = pymysql.connect(host='127.0.0.1', user='root', passwd='a098765', port=3306, db='course_management')
+conn = init_connection()
 
 
 def execute_query(query, params=None):
