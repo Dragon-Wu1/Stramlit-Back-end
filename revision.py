@@ -1,5 +1,5 @@
 import streamlit as st
-import pymysql
+import snowflake.connector
 from PIL import Image
 import pandas as pd
 import time
@@ -8,8 +8,14 @@ import email.message
 import pymysql
 
 
+def init_connection():
+    return snowflake.connector.connect(
+        **st.secrets["snowflake"], client_session_keep_alive=True
+    )
+
+
 def query():
-    db = pymysql.connect(host='127.0.0.1', user='root', passwd='a098765', port=3306, db='course_management')
+    db = init_connection()
     cursor = db.cursor()
     sql = 'Select id_name as Course_code, course_name as Course_Name, email as Email,status as Course_Status from course M Join instructors F On M.id_name = F.course;'
     cursor.execute(sql)
@@ -21,7 +27,7 @@ def query():
 def show_revision_form():
     isall = st.checkbox(label="All")
     df2 = query()
-    course_name = df2[["Course_Name"]]
+    course_name = df2[["COURSE_NAME"]]
     button_list = []
     email_list = []
     name_list = []
@@ -30,7 +36,7 @@ def show_revision_form():
         st.table(df2)
     with right_column:
         st.write("<Select Box!>")
-        for j in df2.Course_code:
+        for j in df2.CORUSE_CODE:
             j = st.checkbox(j, key=j, value=isall)
             button_list.append(j)
     left_column1, right_column1 = st.columns([5, 1])
@@ -42,8 +48,8 @@ def show_revision_form():
     if submit_button:
         for t in range(0, len(button_list)):
             if button_list[t]:
-                email_list.append(df2.at[t, "Email"])
-                name_list.append(df2.at[t, "Course_code"])
+                email_list.append(df2.at[t, "EMAIL"])
+                name_list.append(df2.at[t, "COURSE_cODE"])
         # st.write(email_list)
         # st.write(name_list)
         st.success("You have successfully send email!")
