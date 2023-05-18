@@ -1,11 +1,14 @@
 import streamlit as st
-import pymysql
+import snowflake.connector
 from PIL import Image
 import pandas as pd
 import time
 
 
-
+def init_connection():
+    return snowflake.connector.connect(
+        **st.secrets["snowflake"], client_session_keep_alive=True
+    )
 # def callback1():
 # Search
 #   st.session_state['btn_clicked'] = True
@@ -24,7 +27,7 @@ def add_show():
 
 
 def query_add_course():
-    db = pymysql.connect(host='127.0.0.1', user='root', passwd='a098765', port=3306, db='course_management')
+    db = init_connection()
     cursor = db.cursor()
     sql = 'Select instructor_id as ID,name as Instructor_Name, email as Email from instructors;'
     cursor.execute(sql)
@@ -49,7 +52,7 @@ def add_new_course_save():
         with right_column:
             conffirm = st.button('Confirm')
         if conffirm:
-            db = pymysql.connect(host='127.0.0.1', user='root', passwd='a098765', port=3306, db='course_management')
+            db = init_connection()
             cursor = db.cursor()
             sql = " select name, password, email from instructors where instructor_id = '%s'" % (lt1[0])
             cursor.execute(sql)
