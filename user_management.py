@@ -1,12 +1,12 @@
 import streamlit as st
-import pymysql
+import snowflake.connector
 import pandas as pd
 from revision import show_revision_form
 
 
 
 def connect():
-    conn = pymysql.connect(host='127.0.0.1', user='root', passwd='a098765', port=3306, db='course_management')
+        conn = init_connection()
     return conn
 
 
