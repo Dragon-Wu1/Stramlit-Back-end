@@ -4,6 +4,11 @@ import pandas as pd
 from revision import show_revision_form
 
 
+def init_connection():
+    return snowflake.connector.connect(
+        **st.secrets["snowflake"], client_session_keep_alive=True
+    )
+
 
 def connect():
         conn = init_connection()
