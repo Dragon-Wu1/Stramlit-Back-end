@@ -11,11 +11,11 @@ forums](https://discuss.streamlit.io).
  when log in,for input the password,it need to press enter to confirm the password after input the password.
  This is an link to enter to the back end(https://dragon-wu1-stramlit-back-end-streamlit-app-99ifav.streamlit.app/)
 # For log in
- admin name:hunter
+ admin name:hunter ;
  admin password:1234
 # 
 # 2) is directly run the program in python
  run the back.py and install the package from requirement.txt
  # For log in
- admin name:hunter
+ admin name:hunter ;
  admin password:1234
