@@ -6,10 +6,10 @@ If you have any questions, checkout our [documentation](https://docs.streamlit.i
 forums](https://discuss.streamlit.io).
 # There is 2 way for running our program
 # 1) is for running to Streamlit Cloud
-# Edit the content of secret.toml which is under the .streamlit folder and also change the app setting of secret to the content of secret.toml in the Streamlit Cloud.
-# List the package in the requirements.txt
-# when log in,for input the password,it need to press enter to confirm the password after input the password.
-# This is an link to enter to the back end(https://dragon-wu1-stramlit-back-end-streamlit-app-99ifav.streamlit.app/)
+ Edit the content of secret.toml which is under the .streamlit folder and also change the app setting of secret to the content of secret.toml in the Streamlit Cloud.
+ List the package in the requirements.txt
+ when log in,for input the password,it need to press enter to confirm the password after input the password.
+ This is an link to enter to the back end(https://dragon-wu1-stramlit-back-end-streamlit-app-99ifav.streamlit.app/)
 # admin name:hunter
 # admin password:1234
 # 
